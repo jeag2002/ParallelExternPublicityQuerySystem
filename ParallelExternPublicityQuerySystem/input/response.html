@@ -1,0 +1,61 @@
+<div id="iawrapper">
+<script>
+</script>
+
+
+<input type="hidden" id="inneractive-error" value="Unknown AppID" />
+<input type="hidden" id="inneractive-ad-type" value="3"/>
+<input type="hidden" id="inneractive-ad-width" value="0"/>
+<input type="hidden" id="inneractive-ad-height" value="0"/>
+<input type="hidden" id="inneractive-ad-network" value="inneractive360"/>
+
+<script>
+function getValueById(elementId){
+	if(document.getElementById(elementId)){
+		return document.getElementById(elementId).value;
+	}
+	return -1;
+}
+
+function getInneractiveClientId() {
+	return "-1";
+}
+
+function getInneractiveAdType() {
+	return getValueById("inneractive-ad-type");
+}
+
+function getInneractiveErrorString() {
+	return getValueById("inneractive-error");
+}
+</script>
+
+
+	<a href="">
+		<img id="iaAd" src="//cdn1.inner-active.mobi/mnt/InnerActive/Resources/housead_inneractive/a.png" /><br/>
+		Monetize Your Apps With Us Today!
+	</a>
+
+<div id="track_href"></div>
+
+<script>
+    function iaAddTrackingPixel(trackingPixelSrc, shouldSendArguments, argumentsObj) {
+		if (trackingPixelSrc != '') {
+			var track = new Image();
+            if (shouldSendArguments) {
+                track.src = trackingPixelSrc + encodeURI(JSON.stringify(argumentsObj));
+            } else {
+                track.src = trackingPixelSrc;
+            }
+			track.width = '1';
+			track.height = '1';
+
+			document.getElementById("track_href").appendChild(track);
+	   }
+	}
+
+</script>
+<div id="track_href"></div>
+
+</div>
+
