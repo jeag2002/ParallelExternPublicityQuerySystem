@@ -1,0 +1,19 @@
+<tns:Response xmlns:tns="http://www.inner-active.com/SimpleM2M/M2MResponse"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Error="House Ad"
+              xsi:schemaLocation="http://www.inner-active.com/SimpleM2M/M2MResponse http://www.inner-active.com/Public/XML/SimpleM2M/M2MResponse.xsd">
+    <tns:AdWidth Value="0" />
+    <tns:AdHeight Value="0" />
+    <tns:AdNetwork Value="inneractive360" />
+    <tns:AdType Value="3"/>
+    <tns:Ad>
+        <![CDATA[
+<a href="http://event.inner-active.mobi/simpleM2M/reportEvent?eventArchetype=legacyClick&amp;requestType=18&amp;eventType=0&amp;shouldRedirect=true&amp;s=5611760094904292233&amp;aid=Tappx_3134_TriviaCrack_BM_Android&amp;cip=213.127.223.000&amp;ua=&amp;po=559&amp;cc=NL&amp;adExpTime=1528569156412&amp;adTime=1528567956412&amp;v=Sm2m-2_1_0&amp;locationType=3&amp;network=null&amp;acp=&amp;pcp=CLICK_MACRO&amp;secure=false&amp;rtb=false&amp;houseAd=true">
+    <img src="//cdn1.inner-active.mobi/mnt/InnerActive/Resources/housead_inneractive/a.png" alt="Monetize Your Apps With Us Today!"/><br/>Monetize Your Apps With Us Today!</a> 
+            <img id='iaIImpressionTrackingPixel' alt="" src="http://event.inner-active.mobi/simpleM2M/reportEvent?eventArchetype=impression&requestType=18&eventType=0&shouldRedirect=false&s=5611760094904292233&aid=599806&cip=213.127.223.000&ua=Mozilla%2F5.0+%28Linux%3B+Android+4.4.3%3B+HTC+One+Build%2FKTU84L%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F38.0.2125.102+Mobile+Safari%2F537.36&po=559&cc=NL&adExpTime=1528569156413&adTime=1528567956413&v=Sm2m-2_1_0&locationType=3&network=null&acp=&pcp=CLICK_MACRO&secure=false&rtb=false&houseAd=true" style='width:0px;height:0px;border:0px;margin:0px;float:left;'/>
+
+
+
+]]>
+    </tns:Ad>
+</tns:Response>
+

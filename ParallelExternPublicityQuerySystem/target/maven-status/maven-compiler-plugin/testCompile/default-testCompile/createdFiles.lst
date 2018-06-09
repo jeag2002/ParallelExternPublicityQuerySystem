@@ -1,0 +1,5 @@
+es\tappex\test\ParallelPublicityQueryEngineTest_OK_1Thread.class
+es\tappex\test\JSONParserTest.class
+es\tappex\test\ParallelPublicityQueryEngineTest_KO_1Thread.class
+es\tappex\test\ParallelPublicityQueryEngineTest_OK_3Threads.class
+es\tappex\test\JSONMAPToParametersTest.class

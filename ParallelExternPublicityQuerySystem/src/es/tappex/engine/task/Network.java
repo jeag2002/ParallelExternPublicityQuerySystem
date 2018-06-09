@@ -16,6 +16,8 @@ import javax.xml.bind.JAXBException;
 
 import es.tappex.bean.Response;
 import es.tappex.utils.Constants;
+import es.tappex.validations.ValidationFactory;
+import es.tappex.validations.ValidationSchema;
 
 public class Network {
 	
@@ -30,48 +32,40 @@ public class Network {
 	
 	/**
 	 * Do the remote call
-	 * @param _json			input json query
-	 * @param _timeOut		ReadTimeout/ConnectTimeout
+	 * @param _json				input json query
+	 * @param _timeOut			ReadTimeout/ConnectTimeout
+	 * @param _type_response	response type 
 	 * @return
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 * @throws JAXBException
 	 */
 	
-	public Response connection(String _json, long _timeOut) throws MalformedURLException, IOException, JAXBException
+	public Response connection(String _json, long _timeOut, String _type_response) throws MalformedURLException, IOException, JAXBException
 	{
 		
 		if (url.equalsIgnoreCase("") || key.equalsIgnoreCase("")) {
 			System.out.println("[Network -"+Thread.currentThread().getName()+"] error getting parameters url (" + url + ")  - key (" + key+ ")");
-			return null;
+			return new Response(Thread.currentThread().getName(), Constants.KO_BADREQUEST,"No url or key");
 		}else {
 			
-			String urlconnection = url+"?KEY="+key;
+			//DO THE HTTP Connection.
+			String urlconnection = url+"?"+_json;
 			
 			URL urlrequest  = new URL(urlconnection);
 			HttpURLConnection conn = (HttpURLConnection)urlrequest.openConnection();
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Accept", "application/html");
-			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", _type_response);
+			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			
 			conn.setReadTimeout((int)_timeOut);
 			conn.setConnectTimeout((int)_timeOut);
 			
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
-			
-			OutputStream os = conn.getOutputStream();
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-			writer.write(_json);
-			
-			writer.flush();
-			writer.close();
-			os.close();
-
 			conn.connect();
 			
 			int HttpResultCode = conn.getResponseCode(); 
-			System.out.println("[Network -"+Thread.currentThread().getName()+"] url::(" + urlconnection + ") RESPONSE (" + HttpResultCode + ")");
 			
 			Response resp = new Response();
 			
@@ -92,6 +86,18 @@ public class Network {
 			    br.close();
 				resp.setResponseData(sb.toString());
 				/////////////////////////////////////////////////////////////////////////////////////////////
+				
+				//Validate Schema by type_response
+				/////////////////////////////////////////////////////////////////////////////////////////////
+				if (!_type_response.trim().equals("")) {
+					ValidationSchema vS = ValidationFactory.getValidationSchema(_type_response);
+					resp = vS.validateSchema(resp);
+				}else {
+					System.out.println("[Network -"+Thread.currentThread().getName()+"] warn cannot identify type_response ("+_type_response+")");
+					resp.setResponseId(Constants.OK_NOCONTENT);
+					resp.setResponseData("");
+				}
+				/////////////////////////////////////////////////////////////////////////////////////////////
 			
 			}else if (HttpResultCode == Constants.OK_NOCONTENT_INT) {
 				
@@ -110,7 +116,6 @@ public class Network {
 				resp.setResponseId(Constants.OTHER);
 				resp.setResponseData("HTTP Response warning (" + HttpResultCode + ")");
 			}
-			
 			
 			
 			

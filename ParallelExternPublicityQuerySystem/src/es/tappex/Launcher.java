@@ -5,12 +5,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
 
+import javax.script.ScriptException;
+
+import es.tappex.bean.Request;
 import es.tappex.engine.ParallelPublicityQueryEngine;
 import es.tappex.exceptions.LessThanOneException;
 import es.tappex.utils.Constants;
 import es.tappex.utils.VariableUtils;
-
+ 
 public class Launcher {
 	
 	/**
@@ -42,16 +46,30 @@ public class Launcher {
 				
 				Properties prop = processLauncher();
 				
-				String key = prop.getProperty(Constants.resources_key, "");
-			    String url = prop.getProperty(Constants.resources_url, "");
 				
+				String url = prop.getProperty(Constants.resources_url, "");
+				String key = prop.getProperty(Constants.resources_key, "");
 				File fil = VariableUtils.StringToFile(args[0]);
+				
+				String type_response = prop.getProperty(Constants.resources_response,"");
+				String file_response = prop.getProperty(Constants.resources_outputfile,"");
+			    
+				
 				Integer num_threads = VariableUtils.StringToInteger(args[1]);
 				Long keep_alive = VariableUtils.StringToLong(args[2]);
 				
-				System.out.println("[Launcher] url ("+url+") key ("+key+") fil (" + fil.getName()+ ") num_threads (" + String.valueOf(num_threads) + ") keep_alive (" + String.valueOf(keep_alive) + ")");
 				
-				ParallelPublicityQueryEngine.process(fil, url, key, num_threads, keep_alive);
+				Request req = new Request();
+				
+				req.setUrl(url);
+				req.setKey(key);
+				req.setFil(fil);
+				req.setResponse_type(type_response);
+				req.setResponse_file(file_response);
+				req.setNum_threads(num_threads);
+				req.setTimeOut(keep_alive);
+				
+				ParallelPublicityQueryEngine.process(req);
 				
 			}else {
 				System.out.println("[Launcher] Error - wrong parameters");	
@@ -68,9 +86,20 @@ public class Launcher {
 		}catch (NullPointerException e2) {
 			System.out.println("[Launcher] General NullPointerException Error -  (" + e2.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(NumberFormatException e3) {
+		}catch(ScriptException e3) {
+			System.out.println("[Launcher] General JSON Parser Script Exception Error -  (" + e3.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(LessThanOneException e4) {
+		}catch(NumberFormatException e4) {
+			res = Constants.END_KO;
+		}catch(LessThanOneException e5) {
+			res = Constants.END_KO;
+		}catch(InterruptedException e6) {
+			System.out.println("[Launcher] General InterruptedException Error -  (" + e6.getMessage() + ")");
+			res = Constants.END_KO;
+		}catch(ExecutionException e7) {
+			System.out.println("[Launcher] General ExecutionException Error -  (" + e7.getMessage() + ")");
+			res = Constants.END_KO;
+		}catch(Exception eX) {
 			res = Constants.END_KO;
 		}finally {
 			return res;
