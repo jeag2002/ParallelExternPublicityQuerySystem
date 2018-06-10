@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: es.tappex.test.JSONMAPToParametersTest
+Test set: es.tappex.test.ParallelPublicityQueryEngineFailsTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.482 sec
+Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.119 sec

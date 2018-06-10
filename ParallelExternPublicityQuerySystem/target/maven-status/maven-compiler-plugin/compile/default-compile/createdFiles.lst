@@ -1,6 +1,8 @@
 es\tappex\Launcher.class
 es\tappex\validations\ValidateXML.class
 es\tappex\engine\task\Network.class
+es\tappex\json\ParserSchema.class
+es\tappex\json\JSONFactory.class
 es\tappex\json\JSONParser.class
 es\tappex\validations\ValidateHTML.class
 es\tappex\validations\ValidateJSON.class

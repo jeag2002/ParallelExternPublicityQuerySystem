@@ -3,7 +3,7 @@ package es.tappex.bean;
 import java.io.File;
 
 /**
- * Request Data
+ * Request Data (data necessary to create the threadpool and establish the URL connection)
  * @author Usuario
  *
  */
@@ -13,7 +13,9 @@ public class Request {
 	private String key;
 	private File fil;
 	
-	
+
+	private String parser_type;
+	private String validation_type;
 	private String response_type;
 	private String response_file;
 	private Integer num_threads;
@@ -27,8 +29,13 @@ public class Request {
 		url = "";
 		key = "";
 		fil = new File("");
+		
+		parser_type = "";
+		validation_type = "";
+		
 		response_type = "";
 		response_file = "";
+		
 		num_threads = 0;
 		timeOut = 0L;
 		
@@ -90,9 +97,25 @@ public class Request {
 		this.timeOut = timeOut;
 	}
 	
+	public String getParser_type() {
+		return parser_type;
+	}
+
+	public void setParser_type(String parser_type) {
+		this.parser_type = parser_type;
+	}
+	
+	public String getValidation_type() {
+		return validation_type;
+	}
+
+	public void setValidation_type(String validation_type) {
+		this.validation_type = validation_type;
+	}
+	
 	@Override
 	public String toString() {
-		return "url ::= (" + this.url + ") key ::= ("+ this.key + ") request_file ::= (" + fil.getName() + ") response_type ::= (" + this.response_type + ") response_file ::= (" + this.response_file + ") num_threads ::= (" + num_threads+ ")  timeOut ::= (" + timeOut + ")";
+		return "url ::= (" + this.url + ") key ::= ("+ this.key + ") request_file ::= (" + fil.getName() + ") parser_type ::= (" + this.parser_type + ") validation_type ::= (" + this.validation_type + ") response_type ::= (" + this.response_type + ") response_file ::= (" + this.response_file + ") num_threads ::= (" + num_threads+ ") timeOut ::= (" + timeOut + ")";
 	}
 	
 

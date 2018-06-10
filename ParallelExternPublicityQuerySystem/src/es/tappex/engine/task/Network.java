@@ -31,7 +31,7 @@ public class Network {
 	}
 	
 	/**
-	 * Do the remote call
+	 * Do the remote url call
 	 * @param _json				input json query
 	 * @param _timeOut			ReadTimeout/ConnectTimeout
 	 * @param _type_response	response type 
@@ -41,7 +41,7 @@ public class Network {
 	 * @throws JAXBException
 	 */
 	
-	public Response connection(String _json, long _timeOut, String _type_response) throws MalformedURLException, IOException, JAXBException
+	public Response connection(String _json, long _timeOut, String _type_validation, String _type_response) throws MalformedURLException, IOException, JAXBException
 	{
 		
 		if (url.equalsIgnoreCase("") || key.equalsIgnoreCase("")) {
@@ -69,6 +69,8 @@ public class Network {
 			
 			Response resp = new Response();
 			
+			resp.setRequestURL(urlconnection);
+			
 			resp.setThreadId(Thread.currentThread().getName());
 			
 			if (HttpResultCode == Constants.OK_CONTENT_INT) {
@@ -90,7 +92,9 @@ public class Network {
 				//Validate Schema by type_response
 				/////////////////////////////////////////////////////////////////////////////////////////////
 				if (!_type_response.trim().equals("")) {
-					ValidationSchema vS = ValidationFactory.getValidationSchema(_type_response);
+					//Get appropriate validation schema from factory
+					ValidationSchema vS = ValidationFactory.getValidationSchema(_type_validation);
+					//validate schema
 					resp = vS.validateSchema(resp);
 				}else {
 					System.out.println("[Network -"+Thread.currentThread().getName()+"] warn cannot identify type_response ("+_type_response+")");

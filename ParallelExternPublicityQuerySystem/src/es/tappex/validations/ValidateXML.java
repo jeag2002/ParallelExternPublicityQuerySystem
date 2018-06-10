@@ -3,6 +3,11 @@ package es.tappex.validations;
 import es.tappex.bean.Response;
 import es.tappex.utils.Constants;
 
+/**
+ * Response Banner XML validation
+ * @author Usuario
+ */
+
 public class ValidateXML implements ValidationSchema {
 
 	@Override
@@ -14,7 +19,12 @@ public class ValidateXML implements ValidationSchema {
 			
 			String evalError = body.substring(body.indexOf(Constants.TAG_XML_EVAL)+Constants.TAG_XML_EVAL.length(), body.indexOf("\"",body.indexOf(Constants.TAG_XML_EVAL)+Constants.TAG_XML_EVAL.length()));
 			
-			if (!evalError.equalsIgnoreCase(Constants.OK_CONTENT) && (!evalError.equalsIgnoreCase(Constants.OK_CONTENT_1))) {
+			if (evalError.equalsIgnoreCase(Constants.OK_CONTENT_1)) {
+				System.out.println("[ValidateXML - "+Thread.currentThread().getName()+"] is an Test AD [" + evalError + "]");
+				resp.setResponseId(Constants.OK_CONTENT_TEST);
+				
+			}
+			else if (!evalError.equalsIgnoreCase(Constants.OK_CONTENT) && (!evalError.equalsIgnoreCase(Constants.OK_CONTENT_1))) {
 				System.out.println("[ValidateXML - "+Thread.currentThread().getName()+"] expect [" + Constants.OK_CONTENT + "/" + Constants.OK_CONTENT_1 + "] but is [" + evalError + "]");
 				resp.setResponseId(Constants.OK_NOCONTENT);
 				resp.setResponseData("");

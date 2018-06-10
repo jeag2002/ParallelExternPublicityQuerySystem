@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.AccessDeniedException;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
@@ -51,6 +52,8 @@ public class Launcher {
 				String key = prop.getProperty(Constants.resources_key, "");
 				File fil = VariableUtils.StringToFile(args[0]);
 				
+				String type_parser = prop.getProperty(Constants.resources_parser,"");
+				String type_validation = prop.getProperty(Constants.resources_validation, "");
 				String type_response = prop.getProperty(Constants.resources_response,"");
 				String file_response = prop.getProperty(Constants.resources_outputfile,"");
 			    
@@ -64,8 +67,13 @@ public class Launcher {
 				req.setUrl(url);
 				req.setKey(key);
 				req.setFil(fil);
+				
+				req.setParser_type(type_parser);
+				req.setValidation_type(type_validation);
+				
 				req.setResponse_type(type_response);
 				req.setResponse_file(file_response);
+				
 				req.setNum_threads(num_threads);
 				req.setTimeOut(keep_alive);
 				
@@ -80,26 +88,32 @@ public class Launcher {
 		}catch(FileNotFoundException e0) {	
 			System.out.println("[Launcher] General FileNotFoundException Error -  (" + e0.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(IOException e1) {
-			System.out.println("[Launcher] General IOException Error -  (" + e1.getMessage() + ")");
+		}catch(AccessDeniedException e1) {
+			System.out.println("[Launcher] General AccessDeniedException Error - (" + e1.getMessage() + ")");
+			res = Constants.END_KO;	
+		}catch(IOException e2) {
+			System.out.println("[Launcher] General IOException Error -  (" + e2.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch (NullPointerException e2) {
-			System.out.println("[Launcher] General NullPointerException Error -  (" + e2.getMessage() + ")");
+		}catch (NullPointerException e3) {
+			System.out.println("[Launcher] General NullPointerException Error -  (" + e3.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(ScriptException e3) {
-			System.out.println("[Launcher] General JSON Parser Script Exception Error -  (" + e3.getMessage() + ")");
+		}catch(ScriptException e4) {
+			System.out.println("[Launcher] General JSON Parser Script Exception Error -  (" + e4.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(NumberFormatException e4) {
+		}catch(NumberFormatException e5) {
 			res = Constants.END_KO;
-		}catch(LessThanOneException e5) {
+		}catch(LessThanOneException e6) {
 			res = Constants.END_KO;
-		}catch(InterruptedException e6) {
-			System.out.println("[Launcher] General InterruptedException Error -  (" + e6.getMessage() + ")");
+		}catch(InterruptedException e7) {
+			System.out.println("[Launcher] General InterruptedException Error -  (" + e7.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(ExecutionException e7) {
-			System.out.println("[Launcher] General ExecutionException Error -  (" + e7.getMessage() + ")");
+		}catch(ExecutionException e8) {
+			System.out.println("[Launcher] General ExecutionException Error -  (" + e8.getMessage() + ")");
 			res = Constants.END_KO;
-		}catch(Exception eX) {
+		}catch(IllegalArgumentException e9) {
+			System.out.println("[Launcher] General IllegalArgumentException Error - (" + e9.getMessage() + ")");
+			res = Constants.END_KO;
+		}catch(Exception e10) {
 			res = Constants.END_KO;
 		}finally {
 			return res;

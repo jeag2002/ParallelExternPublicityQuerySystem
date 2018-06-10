@@ -21,7 +21,7 @@ import java.util.Map;
    
 */
 
-public class JSONMAPToParameters {
+public class JSONMAPToParameters implements ParserSchema{
 	
 	/**
 	 * Transform a Map with the structure of a JSON schema to input parameters for a GET HTTP Query
@@ -31,8 +31,7 @@ public class JSONMAPToParameters {
 	 * @throws Exception
 	 */
 	
-	
-	public static String jsonMapToStringConversion(Map JSONMapping, String key) throws NullPointerException{
+	public String jsonMapToStringConversion(Map JSONMapping, String key) throws NullPointerException{
 		
 		String parameters = "";
 		

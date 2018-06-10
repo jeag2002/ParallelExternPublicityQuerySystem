@@ -1,5 +1,6 @@
-es\tappex\test\ParallelPublicityQueryEngineTest_OK_1Thread.class
 es\tappex\test\JSONParserTest.class
-es\tappex\test\ParallelPublicityQueryEngineTest_KO_1Thread.class
-es\tappex\test\ParallelPublicityQueryEngineTest_OK_3Threads.class
+es\tappex\test\ParallelPublicityQueryEngineFailsTest.class
+es\tappex\test\ParallelPublicityQueryEngineOKSingleTest.class
+es\tappex\test\ParallelPublicityQueryEngineOKParallelTest.class
+es\tappex\test\NetworkTest.class
 es\tappex\test\JSONMAPToParametersTest.class

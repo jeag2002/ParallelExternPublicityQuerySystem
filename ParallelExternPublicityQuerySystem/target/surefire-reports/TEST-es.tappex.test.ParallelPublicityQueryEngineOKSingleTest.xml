@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="es.tappex.test.JSONMAPToParametersTest" time="0.44" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" time="0.957" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_144\bin"/>
@@ -61,6 +61,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="es.tappex.test.JSONMAPToParametersTest" name="malformedParameters" time="0.423"/>
-  <testcase classname="es.tappex.test.JSONMAPToParametersTest" name="wellformedParameters" time="0.017"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_NOPARAMETERS_XML" time="0.108"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_BADPARAMETER_XML" time="0.145"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_NOPARAMETERS_HTML" time="0.133"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_BADPARAMETER_HTML" time="0.125"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_HTML" time="0.216"/>
+  <testcase classname="es.tappex.test.ParallelPublicityQueryEngineOKSingleTest" name="testPublicityQueryEngineTest_OK_3_XML" time="0.23"/>
 </testsuite>

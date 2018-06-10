@@ -4,7 +4,7 @@ import es.tappex.bean.Response;
 import es.tappex.utils.Constants;
 
 /**
- * Validation of HTML schemas.
+ * Response HTML Banner validation
  * @author Usuario
  */
 
@@ -26,7 +26,12 @@ public class ValidateHTML implements ValidationSchema {
 				if (responseHTML.indexOf(Constants.TAG_HTML_EVAL)!=-1) {
 					String evalError = responseHTML.substring(responseHTML.indexOf(Constants.TAG_HTML_EVAL)+Constants.TAG_HTML_EVAL.length(), responseHTML.indexOf("\"",responseHTML.indexOf(Constants.TAG_HTML_EVAL)+Constants.TAG_HTML_EVAL.length()));
 					//if inneractive error equal to OK or House Ad ==> it's OK. Else No Content.
-					if (!evalError.equalsIgnoreCase(Constants.OK_CONTENT) && (!evalError.equalsIgnoreCase(Constants.OK_CONTENT_1))) {
+					
+					if (evalError.equalsIgnoreCase(Constants.OK_CONTENT_1)) {
+						System.out.println("[ValidateHTML - "+Thread.currentThread().getName()+"] is an Test AD [" + evalError + "]");
+						resp.setResponseId(Constants.OK_CONTENT_TEST);
+						
+					}else if (!evalError.equalsIgnoreCase(Constants.OK_CONTENT) && (!evalError.equalsIgnoreCase(Constants.OK_CONTENT_1))) {
 						System.out.println("[ValidateHTML - "+Thread.currentThread().getName()+"] expect [" + Constants.OK_CONTENT + "/" + Constants.OK_CONTENT_1 + "] but is [" + evalError + "]");
 						resp.setResponseId(Constants.OK_NOCONTENT);
 						resp.setResponseData("");

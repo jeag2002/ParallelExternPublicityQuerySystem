@@ -1,7 +1,7 @@
 package es.tappex.bean;
 
 /**
- * Response Data
+ * Response Data (encapsulation of response data)
  * @author Usuario
  *
  */
@@ -12,20 +12,31 @@ public class Response {
 	private String responseId;
 	private String responseData;
 	private Long timeoutData;
-	
+	private String requestURL;
 	
 	public Response() {
 		threadId = "";
 		responseId = "";
 		responseData = "";
+		requestURL = "";
 		timeoutData = 0L;
+		
 	}
 	
 	public Response(String _threadId, String _responseId, String _responseData) {
 		threadId = _threadId;
 		responseId = _responseId;
 		responseData = _responseData;
+		requestURL = "";
 	}
+	
+	public Response(String _threadId, String _responseId, String _responseData, String _requestURL) {
+		threadId = _threadId;
+		responseId = _responseId;
+		responseData = _responseData;
+		requestURL = _requestURL;
+	}
+	
 	
 	public String getThreadId() {
 		return threadId;
@@ -59,7 +70,14 @@ public class Response {
 		this.timeoutData = timeoutData;
 	}
 
-	
+	public String getRequestURL() {
+		return requestURL;
+	}
+
+	public void setRequestURL(String requestURL) {
+		this.requestURL = requestURL;
+	}
+
 	
 	//clone Response data.
 	public void copy(Response copy) {
@@ -67,13 +85,15 @@ public class Response {
 		this.threadId = copy.getThreadId();
 		this.responseId = copy.getResponseId();
 		this.responseData = copy.getResponseData();
+		this.requestURL = copy.getRequestURL();
 		this.timeoutData = copy.getTimeoutData();
+		
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "threadId (" + this.threadId + ") -- responseId (" + this.responseId + ") -- timeOut ("+this.timeoutData+") ms -- data (\r\n" + this.responseData + "\r\n)";
+		return "threadId (" + this.threadId + ")\r\n -- requestURL (GET:" + this.requestURL + ")\r\n -- responseId (" + this.responseId + ") -- timeSpent ("+this.timeoutData+") ms -- data (\r\n" + this.responseData + "\r\n)";
 	}
 	
 	
