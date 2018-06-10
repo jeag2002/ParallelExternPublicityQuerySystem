@@ -101,8 +101,10 @@ public class Launcher {
 			System.out.println("[Launcher] General JSON Parser Script Exception Error -  (" + e4.getMessage() + ")");
 			res = Constants.END_KO;
 		}catch(NumberFormatException e5) {
+			System.out.println("[Launcher] NumberFormat Exception Error -  (" + e5.getMessage() + ")");
 			res = Constants.END_KO;
 		}catch(LessThanOneException e6) {
+			System.out.println("[Launcher] LessThanOneException Exception Error -  (" + e6.getMessage() + ")");
 			res = Constants.END_KO;
 		}catch(InterruptedException e7) {
 			System.out.println("[Launcher] General InterruptedException Error -  (" + e7.getMessage() + ")");
